@@ -1,6 +1,11 @@
+<script setup>
+provideHeadlessUseId(() => useId())
+</script>
+
 <template>
   <div>
     <NuxtLoadingIndicator />
+    <!-- <HeadlessListbox v-model="selectedPerson"></HeadlessListbox> -->
     <!-- navBar -->
     <nav class="bg-blue-500 p-4">
       <ul class="flex justify-between items-center">
@@ -8,14 +13,19 @@
           <li class="mr-6">
             <NuxtLink class="text-white text-lg hover:text-gray-300" to="/">Home</NuxtLink>
           </li>
-          <li class="mr-6 relative"  v-click-outside="showCategories">
-            <button @click="showCategories = !showCategories"
-              class="text-white text-lg hover:text-gray-300">Categories</button>
-            <ul v-if="showCategories" class="absolute left-0 flex flex-col space-y-2 mt-2 bg-gray-200 p-4 rounded">
-              <li v-for="(value, name) in CategoriesEnum" :key="name">
-                <NuxtLink to="/" class="text-black text-lg hover:text-gray-700">{{ value }}</NuxtLink>
-              </li>
-            </ul>
+          <li class="mr-6 relative">
+            <HeadlessMenu as="div" class="relative inline-block text-left">
+              <HeadlessMenu.Button class="text-white text-lg hover:text-gray-300">
+                Categories
+              </HeadlessMenu.Button>
+              <HeadlessMenuItems class="absolute bg-white shadow-md mt-2 w-64 rounded-md overflow-hidden z-10">
+                <HeadlessMenuItem v-slot="{ active }" v-for="(value) in CategoriesList">
+                  <NuxtLink :to="{ name: 'categories-category', params: { category: value } }" class="text-black text-lg hover:text-gray-700 block px-4 py-2" :class="{ 'bg-blue-500': active }">
+                    {{ value }}
+                  </NuxtLink>
+                </HeadlessMenuItem>
+              </HeadlessMenuItems>
+            </HeadlessMenu>
           </li>
         </div>
         <div class="flex flex-1 mx-8 relative">
@@ -37,13 +47,3 @@
     </div>
   </div>
 </template>
-
-<script>
-export default {
-  data() {
-    return {
-      showCategories: false,
-    };
-  },
-};
-</script>

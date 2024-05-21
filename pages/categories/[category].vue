@@ -1,7 +1,6 @@
 <script setup lang="ts">
-const { error, data } = useFetch('http://localhost:3000/products/category?page=1&category=cpu&sortBy=LowHigh')
 const route= useRoute()
-
+const { error, data } = useFetch(`http://localhost:3000/products/category?page=1&category=${route.params.category}&sortBy=LowHigh`)
 // When accessing /posts/1, route.params.id will be 1
 console.log("🦊", route.params.category)
 console.log(data)

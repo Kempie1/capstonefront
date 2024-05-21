@@ -1,4 +1,4 @@
-export enum CategoriesEnum {
+export const CategoriesList =[
     "case-accessory",
     "case-fan",
     "case",
@@ -24,4 +24,4 @@ export enum CategoriesEnum {
     "webcam",
     "wired-network-card",
     "wireless-network-card",
-  }
+]
