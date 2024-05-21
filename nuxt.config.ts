@@ -6,5 +6,5 @@ export default defineNuxtConfig({
     port: 5000
   },
 
-  modules: ["@nuxt/image",  '@nuxtjs/tailwindcss']
+  modules: ["@nuxt/image",  '@nuxtjs/tailwindcss', 'nuxt-icon']
 })
