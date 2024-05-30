@@ -6,7 +6,13 @@ export default defineNuxtConfig({
     port: 5000
   },
   
-  modules: ["@nuxt/image",  '@nuxtjs/tailwindcss', 'nuxt-icon',  'nuxt-headlessui'],
+  modules: [
+    "@nuxt/image",
+    '@nuxtjs/tailwindcss',
+    'nuxt-icon',
+    'nuxt-headlessui',
+    "@nuxt/eslint"
+  ],
   headlessui: {
     prefix: 'Headless'
   }
