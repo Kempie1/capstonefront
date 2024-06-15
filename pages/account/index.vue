@@ -3,6 +3,6 @@
 <template>
   <h1>Account page</h1>
   <div>
-    <User />
+    <UserAuth />
   </div>
 </template>

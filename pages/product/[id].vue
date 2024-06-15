@@ -6,7 +6,7 @@ const { error, data } = await useFetch(
 if (error.value) {
   console.log("Error!!", error);
 }
-let flatData = flattenProduct(data.value);
+const flatData = flattenProduct(data.value);
 </script>
 <template>
   <section>

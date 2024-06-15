@@ -35,7 +35,7 @@ export interface flattenProduct {
 }
 
 export function flattenProduct(product: Product): flattenProduct {
-  let flatProduct: flattenProduct = {
+  const flatProduct: flattenProduct = {
     id: product.id,
     name: product.name,
     imgUrl: product.imgUrl,
@@ -43,7 +43,7 @@ export function flattenProduct(product: Product): flattenProduct {
     characteristics: [],
     price: "",
   };
-  for (let productCharacteristic of product.productCharacteristics) {
+  for (const productCharacteristic of product.productCharacteristics) {
     if (productCharacteristic.characteristic.name == "price") {
       flatProduct.price = productCharacteristic.value;
     } else {

@@ -6,7 +6,7 @@ provideHeadlessUseId(() => useId());
   <div>
     <NuxtLoadingIndicator />
     <!-- navBar -->
-    <Navbar />
+    <AppNavbar />
     <!-- Content -->
     <div>
       <NuxtPage />

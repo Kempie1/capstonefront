@@ -1,14 +1,3 @@
-<script setup lang="ts">
-const { keycloak, authState } = useKeycloak();
-
-function login() {
-  keycloak.login();
-}
-
-function logout() {
-  keycloak.logout();
-}
-</script>
 <template>
   <nav class="bg-blue-500 p-4">
     <ul class="flex justify-between items-center">
@@ -35,9 +24,9 @@ function logout() {
                     name: 'categories-category',
                     params: { category: value },
                   }"
-                  @click="close"
                   class="text-black text-lg hover:text-gray-700 block px-4 py-2"
                   :class="{ 'bg-blue-500': active }"
+                  @click="close"
                 >
                   {{ value }}
                 </NuxtLink>
@@ -47,7 +36,7 @@ function logout() {
         </li>
       </div>
       <div class="flex flex-1 mx-8 relative">
-        <input type="text" class="w-full p-2 rounded" placeholder="Search..." />
+        <input type="text" class="w-full p-2 rounded" placeholder="Search..." >
       </div>
       <div class="flex space-x-4">
         <li>

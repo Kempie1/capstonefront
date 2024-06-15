@@ -10,7 +10,7 @@ console.log(data);
 <template>
   <section>
     <h1>Products Page</h1>
-    <div class="grid grid-cols-4 gap-4" v-if="data">
+    <div v-if="data" class="grid grid-cols-4 gap-4">
       <div v-for="item in data">
         <!-- <a :href="'http://localhost:3000/products/product/'+ item.id"> -->
         <NuxtLink :to="'/product/' + item.id">
