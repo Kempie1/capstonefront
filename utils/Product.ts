@@ -18,20 +18,20 @@ export interface ProductCharacteristic {
   value: string;
   characteristic: Characteristic;
 }
-interface flatCharacteristics{
-  characteristicId: string,
-  characteristicName: string,
-  valueId: string,
-  value: string,
+interface flatCharacteristics {
+  characteristicId: string;
+  characteristicName: string;
+  valueId: string;
+  value: string;
 }
 
-export interface flattenProduct{
-  id: string,
-    name: string,
-    imgUrl: string,
-    categories: Category[],
-    characteristics: flatCharacteristics[],
-    price: string,
+export interface flattenProduct {
+  id: string;
+  name: string;
+  imgUrl: string;
+  categories: Category[];
+  characteristics: flatCharacteristics[];
+  price: string;
 }
 
 export function flattenProduct(product: Product): flattenProduct {

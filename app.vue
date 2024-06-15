@@ -1,6 +1,5 @@
 <script setup>
-
-provideHeadlessUseId(() => useId())
+provideHeadlessUseId(() => useId());
 </script>
 
 <template>

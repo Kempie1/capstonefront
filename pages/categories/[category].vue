@@ -1,15 +1,16 @@
 <script setup lang="ts">
-const route= useRoute()
-const { error, data } = useFetch<Product[]>(`http://localhost:3000/products/category?page=1&category=${route.params.category}&sortBy=LowHigh`)
+const route = useRoute();
+const { error, data } = useFetch<Product[]>(
+  `http://localhost:3000/products/category?page=1&category=${route.params.category}&sortBy=LowHigh`,
+);
 // When accessing /posts/1, route.params.id will be 1
-console.log("🦊", route.params.category)
-console.log(data)
+console.log("🦊", route.params.category);
+console.log(data);
 </script>
 <template>
   <section>
     <h1>Products Page</h1>
     <div class="grid grid-cols-4 gap-4" v-if="data">
-
       <div v-for="item in data">
         <!-- <a :href="'http://localhost:3000/products/product/'+ item.id"> -->
         <NuxtLink :to="'/product/' + item.id">

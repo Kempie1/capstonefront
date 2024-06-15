@@ -1,9 +1,8 @@
-<script setup lang="ts">
-</script>
+<script setup lang="ts"></script>
 
 <template>
-    <h1>Account page</h1>
-    <div> 
-      <User />
-    </div>
+  <h1>Account page</h1>
+  <div>
+    <User />
+  </div>
 </template>
