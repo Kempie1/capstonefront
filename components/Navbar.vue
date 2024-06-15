@@ -1,3 +1,14 @@
+<script setup lang="ts">
+const { keycloak, authState } = useKeycloak();
+
+function login() {
+  keycloak.login();
+}
+
+function logout() {
+  keycloak.logout();
+}
+</script>
 <template>
     <nav class="bg-blue-500 p-4">
         <ul class="flex justify-between items-center">
@@ -28,7 +39,9 @@
             </div>
             <div class="flex space-x-4">
                 <li>
+                    <NuxtLink class="text-white text-lg hover:text-gray-300" to="/cart">
                     <Icon name="ion:cart" class="text-white text-3xl" />
+                </NuxtLink>
                 </li>
                 <li>
                     <NuxtLink class="text-white text-lg hover:text-gray-300" to="/account">

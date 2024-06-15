@@ -9,8 +9,6 @@ export const useKeycloak = () => {
   if (keycloak) {
     keycloak.onAuthSuccess = () => (authState.value = "authenticated");
     keycloak.onAuthError = () => (authState.value = "error");
-  } else {
-    console.error("Keycloak instance is not initialized.");
   }
 
   return {

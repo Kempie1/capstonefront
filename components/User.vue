@@ -13,7 +13,7 @@ function logout() {
 <template>
   <div>
     <div v-if="authState === 'unAuthenticated'">
-      <div class="mb-6 text-p2blue-700 text-2xl">Not authenticated.</div>
+      <div class="mb-6 text-p2blue-700 text-2xl">Please Log In</div>
       <button
         class="rounded-md bg-indigo-600 px-2.5 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
         @click="login()"
