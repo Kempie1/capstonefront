@@ -18,24 +18,24 @@ export interface ProductCharacteristic {
   value: string;
   characteristic: Characteristic;
 }
-interface flatCharacteristics{
-  characteristicId: string,
-  characteristicName: string,
-  valueId: string,
-  value: string,
+interface flatCharacteristics {
+  characteristicId: string;
+  characteristicName: string;
+  valueId: string;
+  value: string;
 }
 
-export interface flattenProduct{
-  id: string,
-    name: string,
-    imgUrl: string,
-    categories: Category[],
-    characteristics: flatCharacteristics[],
-    price: string,
+export interface flattenProduct {
+  id: string;
+  name: string;
+  imgUrl: string;
+  categories: Category[];
+  characteristics: flatCharacteristics[];
+  price: string;
 }
 
 export function flattenProduct(product: Product): flattenProduct {
-  let flatProduct: flattenProduct = {
+  const flatProduct: flattenProduct = {
     id: product.id,
     name: product.name,
     imgUrl: product.imgUrl,
@@ -43,7 +43,7 @@ export function flattenProduct(product: Product): flattenProduct {
     characteristics: [],
     price: "",
   };
-  for (let productCharacteristic of product.productCharacteristics) {
+  for (const productCharacteristic of product.productCharacteristics) {
     if (productCharacteristic.characteristic.name == "price") {
       flatProduct.price = productCharacteristic.value;
     } else {
