@@ -25,7 +25,7 @@ interface flatCharacteristics {
   value: string;
 }
 
-export interface flattenProduct {
+export interface FlattenProduct {
   id: string;
   name: string;
   imgUrl: string;
@@ -33,9 +33,15 @@ export interface flattenProduct {
   characteristics: flatCharacteristics[];
   price: string;
 }
+export interface getProductResponse {
+  products: FlattenProduct[];
+  totalPages: number;
+  currentPage: number;
+  pageSize: number;
+}
 
-export function flattenProduct(product: Product): flattenProduct {
-  const flatProduct: flattenProduct = {
+export function flattenProduct(product: Product): FlattenProduct {
+  const flatProduct: FlattenProduct = {
     id: product.id,
     name: product.name,
     imgUrl: product.imgUrl,

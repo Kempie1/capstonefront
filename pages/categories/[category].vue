@@ -1,11 +1,9 @@
 <script setup lang="ts">
 const route = useRoute();
-const { error, data } = useFetch<Product[]>(
+const { error, data } = useFetch<getProductResponse>(
   `http://localhost:3000/products/category?page=1&category=${route.params.category}&sortBy=LowHigh`,
 );
 // When accessing /posts/1, route.params.id will be 1
-console.log("🦊", route.params.category);
-console.log(data);
 </script>
 <template>
   <section>
@@ -16,7 +14,7 @@ console.log(data);
         <NuxtLink :to="'/product/' + item.id">
           <nuxt-img :src="item.imgUrl" alt="Product Image" />
           <p>{{ item.name }}</p>
-          <p>{{ item.productCharacteristics[0].value }}$</p>
+          <p>{{ item.price}}$</p>
         </NuxtLink>
       </div>
     </div>
