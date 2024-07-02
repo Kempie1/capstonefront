@@ -12,7 +12,14 @@ export default defineNuxtConfig({
     "nuxt-icon",
     "nuxt-headlessui",
     "@nuxt/eslint",
+    "@sidebase/nuxt-auth"
   ],
+  auth: {       
+     provider: {          
+        type: 'local'  
+            }    
+          },
+
   headlessui: {
     prefix: "Headless",
   },
