@@ -1,3 +1,26 @@
+<script>
+export default {
+  data() {
+    return {
+      searchQuery: '',
+    };
+  },
+  methods: {
+    async search() {
+      // Implement your search logic here
+      // For example, redirect to a search results page with the query
+      // this.$router.push({ name: 'search', query: { q: this.searchQuery } });
+      await navigateTo({
+        path: '/search',
+        query: {
+          page: 1,
+          keyword: this.searchQuery
+        }
+      })
+    },
+  },
+};
+</script>
 <template>
   <nav class="bg-blue-500 p-4">
     <ul class="flex justify-between items-center">
@@ -35,9 +58,13 @@
           </HeadlessPopover>
         </li>
       </div>
-      <div class="flex flex-1 mx-8 relative">
-        <input type="text" class="w-full p-2 rounded" placeholder="Search..." >
-      </div>
+        <form class="flex flex-1 mx-8 relative" @submit.prevent="search">
+          <input 
+          v-model="searchQuery"
+          type="search"
+          placeholder="Search..." class="w-full p-2 rounded-l" >
+          <button type="submit" class="bg-white p-2"><Icon name="ion:search" class="text-black text-2xl" /></button>
+      </form>
       <div class="flex space-x-4">
         <li>
           <NuxtLink class="text-white text-lg hover:text-gray-300" to="/cart">
