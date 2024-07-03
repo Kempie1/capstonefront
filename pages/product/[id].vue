@@ -19,8 +19,8 @@ if (error.value) {
         <ul v-for="item in data.characteristics">
           <li>{{ item.characteristicName }} : {{ item.value }}</li>
         </ul>
+        <div> </div>
       </div>
     </div>
-    <!-- <p>{{ item.name }}</p> -->
   </section>
 </template>
