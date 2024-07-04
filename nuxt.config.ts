@@ -21,15 +21,15 @@ export default defineNuxtConfig({
         login: '/account/login',
       },
       endpoints: {
-        signIn: { path: '/login', method: 'post'},
-        signOut: { path: '/logout', method: 'post' },
-        signUp: { path: '/register', method: 'post' },
-        getSession: false
+        signIn: { path: 'login', method: 'post'},
+        signOut: { path: 'logout', method: 'post' },
+        signUp: { path: 'register', method: 'post' },
+        getSession: { path: '', method: 'get' }
       },
       token: { signInResponseTokenPointer: '/token/accessToken' },
     },
     
-    baseURL: process.env.BASE_LOCAL_AUTH_URL || 'http://localhost:3000/auth',
+    baseURL: process.env.BASE_LOCAL_AUTH_URL || 'http://localhost:3000/auth/',
   },
 
 

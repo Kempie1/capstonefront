@@ -65,7 +65,7 @@
   definePageMeta({
     auth: {
       unauthenticatedOnly: true,
-      navigateAuthenticatedTo: '/',
+      navigateAuthenticatedTo: '/account',
     }
   });
   
