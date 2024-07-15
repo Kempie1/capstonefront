@@ -27,11 +27,11 @@
               </label>
             </div> -->
   
-            <!-- <div class="text-sm">   TODO: Add forgot password page
-              <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500">
+            <div class="text-sm"> 
+          <NuxtLink  href="/forgot-password" class="font-medium text-indigo-600 hover:text-indigo-500">
                 Forgot your password?
-              </a>
-            </div> -->
+              </NuxtLink>
+            </div>
           </div>
   
           <div>
