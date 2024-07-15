@@ -7,9 +7,6 @@ export default {
   },
   methods: {
     async search() {
-      // Implement your search logic here
-      // For example, redirect to a search results page with the query
-      // this.$router.push({ name: 'search', query: { q: this.searchQuery } });
       await navigateTo({
         path: '/search',
         query: {

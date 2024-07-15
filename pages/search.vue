@@ -10,7 +10,6 @@ const error = ref(null);
 const currentPage = ref(route.query.page ? parseInt(route.query.page as string) : 1)
 const totalPages = ref(1);
 
-// Function to execute when parameters change
 const onParamsChange = async () => {
   const response = await useFetch<getProductResponse>(`http://localhost:3000/products/search?${params.toString()}`);
   products.value = response.data?.value?.products || [];
@@ -18,15 +17,13 @@ const onParamsChange = async () => {
   totalPages.value = response.data?.value?.totalPages || 1;
 };
 
-// Initial fetch
 onParamsChange();
 
-// Watch for changes in the route query
 watch(() => route.query, (newQuery) => {
   for (const key in newQuery) {
     params.set(key, newQuery[key]);
   }
-  onParamsChange(); // Refetch data when query parameters change
+  onParamsChange(); 
 }, { deep: true });
 
 async function goToPage(page){

@@ -63,24 +63,30 @@
   <script setup lang="ts">
   
   definePageMeta({
+    middleware: 'auth',
     auth: {
       unauthenticatedOnly: true,
       navigateAuthenticatedTo: '/account',
     }
   });
-  
+
+  const route = useRoute();
+  let callbackUrl = "/account"
+  if (route.query.redirect) {
+    callbackUrl =  route.query.redirect as string;
+  }
   const { signIn } = useAuth();
   const errorMessage = ref('');
   const isLoading = ref(false);
   const email = ref('');
-const password = ref('');    
+  const password = ref('');     
   
   async function handleSignIn() {
     isLoading.value = true;
     errorMessage.value = '';
     try {
-      await signIn({ email: email.value, password: password.value }, {callbackUrl: '/account',  external: true});
-        navigateTo('/');
+      await signIn({ email: email.value, password: password.value }, {callbackUrl: callbackUrl,  external: true});
+        navigateTo(callbackUrl);
     } catch (error) {
   isLoading.value = false;
   if (error.response && error.response.status === 401) {

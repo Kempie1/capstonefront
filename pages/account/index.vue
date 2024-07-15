@@ -1,8 +1,6 @@
 <script setup lang="ts">
 definePageMeta({ middleware: 'auth' })
 const { status, data, token, lastRefreshedAt, signOut } = useAuth()
-// await signIn() // Sign in the user
-// await signOut() // Sign out the user
 const handleSignOut = async () => {
   await signOut()
 }

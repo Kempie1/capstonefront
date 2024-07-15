@@ -109,11 +109,9 @@ async function registerUser() {
         alert("Passwords do not match.");
         return;
     }
-    // Proceed with registration logic
     try {
         const response = await signUp({ email: user.value.email, password: user.value.password });
         if (response.status === 201) {
-            // Redirect to the login page
             navigate('/login');
         }
     } catch (error) {
