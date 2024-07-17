@@ -16,7 +16,7 @@
   "dependencies": {
     "@nuxt/eslint": "^0.3.13",
     "@nuxt/image": "^1.7.0",
-    "@sidebase/nuxt-auth": "0.8.0-rc.1",
+    "@sidebase/nuxt-auth": "^0.8.0",
     "keycloak-js": "^25.0.0",
     "nuxt": "^3.11.2",
     "vue": "^3.4.21",

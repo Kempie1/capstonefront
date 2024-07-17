@@ -1408,10 +1408,10 @@
   resolved "https://registry.yarnpkg.com/@shikijs/core/-/core-1.3.0.tgz#5b93b51ddb8def1e3a1543107f9b5b0540f716f6"
   integrity sha512-7fedsBfuILDTBmrYZNFI8B6ATTxhQAasUHllHmjvSZPnoq4bULWoTpHwmuQvZ8Aq03/tAa2IGo6RXqWtHdWaCA==
 
-"@sidebase/nuxt-auth@0.8.0-rc.1":
-  version "0.8.0-rc.1"
-  resolved "https://registry.yarnpkg.com/@sidebase/nuxt-auth/-/nuxt-auth-0.8.0-rc.1.tgz#461734b7d3a18592ce97dc754025766a4c721949"
-  integrity sha512-BMs5C+xMzuxYDhQ6qNT7imbnAMa1RuZMotsAqw/w653iGlZUbTSH0Lx2O0JwO28zZn9C/225lzrJsys3kIfmfw==
+"@sidebase/nuxt-auth@^0.8.0":
+  version "0.8.0"
+  resolved "https://registry.yarnpkg.com/@sidebase/nuxt-auth/-/nuxt-auth-0.8.0.tgz#da2a096a56226057f602873b024bb7ddba9367a0"
+  integrity sha512-Ampkljj0TRMuAq4le5d9lWUoVq1+jZJST/WBxf6rw+GK/krCS/BaJcAfCgOwTdNtuKQTqUJefZBH/4af/qC/CA==
   dependencies:
     "@nuxt/kit" "^3.11.2"
     defu "^6.1.4"
