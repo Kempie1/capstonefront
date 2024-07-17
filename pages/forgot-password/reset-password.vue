@@ -1,7 +1,7 @@
 <script setup lang="ts">
 // Get the parameters
 const route = useRoute();
-let showSuccessMessage = ref(false)
+const showSuccessMessage = ref(false)
 const passwordReset = ref({
   password: '',
   confirmPassword: '',

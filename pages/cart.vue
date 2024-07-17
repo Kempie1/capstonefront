@@ -12,7 +12,6 @@ const { error, data } = await useFetch<Cart>(
 if (error.value) {
   console.log("Error!!", error.value);
 }
-
 async function removeFromCart(productId: string){
 if (status.value === "authenticated") {
   $fetch(
@@ -30,11 +29,31 @@ if (status.value === "authenticated") {
 }
 else navigateTo("/account/login")
 }
+
+async function checkout(){
+if (status.value === "authenticated") {
+  const checkoutUrl = await $fetch<URL>(
+  "http://localhost:3000/stripe/checkout", {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      "authorization": ""+token.value,
+    },
+  })
+    await navigateTo(checkoutUrl, { external: true })
+  }
+}
+
 </script>
 
 <template>
   <div class="max-w-4xl mx-auto py-8 px-4">
     <h1 class="text-2xl font-bold mb-6">Cart</h1>
+    <div class="text-right mt-4">
+      <button @click="checkout" class="bg-green-500 hover:bg-green-700 text-white font-bold py-4 px-8 text-lg rounded transition-colors duration-150">
+  Checkout
+</button>
+      </div>
     <div v-if="data" class="space-y-4">
       <div v-for="item in data.cartItems" :key="item.product._id" class="flex items-center bg-white shadow-md rounded-lg p-4">
         <nuxt-img :src="item.product.imgUrl" alt="Product Image" class="h-24 w-24 object-cover rounded-md mr-4" />
