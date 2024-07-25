@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const route = useRoute();
 const { error, data } = useFetch<getProductResponse>(
-  `http://localhost:3000/products/category?page=1&category=${route.params.category}&sortBy=LowHigh`,
+  `http://localhost:3000/products/search?category=${route.params.category}`,
 );
 </script>
 <template>

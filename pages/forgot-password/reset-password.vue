@@ -85,9 +85,6 @@ async function changePassword() {
         showSuccessMessage.value = true;
       }
     })
-    // if (response.status === 201) {
-    //     navigate('/login');
-    // }
   } catch (error) {
     console.error("Registration failed:", error);
   }

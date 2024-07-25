@@ -38,28 +38,46 @@ export interface getProductResponse {
   totalPages: number;
   currentPage: number;
   pageSize: number;
+  categoryCounts: { 
+    [key: string]: number 
+  };
+  characteristicCounts: {
+    [characteristicName: string]: {
+      [value: string]: number;
+    };
+  };
+}
+export interface getProductCountResponse {
+  categoryCounts: { 
+    [key: string]: number 
+  };
+  characteristicCounts: {
+    [characteristicName: string]: {
+      [value: string]: number;
+    };
+  };
 }
 
-export function flattenProduct(product: Product): FlattenProduct {
-  const flatProduct: FlattenProduct = {
-    id: product.id,
-    name: product.name,
-    imgUrl: product.imgUrl,
-    categories: product.categories,
-    characteristics: [],
-    price: "",
-  };
-  for (const productCharacteristic of product.productCharacteristics) {
-    if (productCharacteristic.characteristic.name == "price") {
-      flatProduct.price = productCharacteristic.value;
-    } else {
-      flatProduct.characteristics.push({
-        characteristicId: productCharacteristic.characteristic.id,
-        characteristicName: productCharacteristic.characteristic.name,
-        valueId: productCharacteristic.id,
-        value: productCharacteristic.value,
-      });
-    }
-  }
-  return flatProduct;
-}
+// export function flattenProduct(product: Product): FlattenProduct {
+//   const flatProduct: FlattenProduct = {
+//     id: product.id,
+//     name: product.name,
+//     imgUrl: product.imgUrl,
+//     categories: product.categories,
+//     characteristics: [],
+//     price: "",
+//   };
+//   for (const productCharacteristic of product.productCharacteristics) {
+//     if (productCharacteristic.characteristic.name == "price") {
+//       flatProduct.price = productCharacteristic.value;
+//     } else {
+//       flatProduct.characteristics.push({
+//         characteristicId: productCharacteristic.characteristic.id,
+//         characteristicName: productCharacteristic.characteristic.name,
+//         valueId: productCharacteristic.id,
+//         value: productCharacteristic.value,
+//       });
+//     }
+//   }
+//   return flatProduct;
+// }

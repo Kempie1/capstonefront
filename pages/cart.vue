@@ -16,7 +16,7 @@ async function removeFromCart(productId: string){
 if (status.value === "authenticated") {
   $fetch(
   "http://localhost:3000/cart/remove", {
-    method: "POST",
+    method: "DELETE",
     headers: {
       "Content-Type": "application/json",
       "authorization": ""+token.value,
@@ -25,7 +25,7 @@ if (status.value === "authenticated") {
       productId: productId,
     }),
   })
-  navigateTo("/cart")
+  await refreshNuxtData()
 }
 else navigateTo("/account/login")
 }
@@ -62,7 +62,7 @@ if (status.value === "authenticated") {
           <p class="text-gray-600">{{ item.product.price }}$</p>
           <p class="text-sm text-gray-500">Quantity: {{ item.quantity }}</p>
         </div>
-        <button @click="removeFromCart(item.product.id)" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition-colors duration-150">
+        <button @click="removeFromCart(item.id)" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition-colors duration-150">
           Remove from cart
         </button>
       </div>

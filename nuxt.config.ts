@@ -24,7 +24,7 @@ export default defineNuxtConfig({
         signIn: { path: 'login', method: 'post'},
         signOut: { path: 'logout', method: 'post' },
         signUp: { path: 'register', method: 'post' },
-        getSession: { path: '', method: 'get' }
+        getSession: { path: 'session', method: 'get' }
       },
       token: { signInResponseTokenPointer: '/token/accessToken' },
     },
@@ -42,6 +42,8 @@ export default defineNuxtConfig({
       // authKeycloakId: process.env.AUTH_KEYCLOAK_ID || "PartShopClient",
       // authKeycloakRealm: process.env.AUTH_KEYCLOAK_REALM || "PartShop",
       // authKeycloakURL: process.env.AUTH_KEYCLOAK_URL || "http://localhost:8080",
+      URL: process.env.URL || "http://localhost:5000",
+      API_URL: process.env.API_URL || "http://localhost:3000",
     },
   },
 });
