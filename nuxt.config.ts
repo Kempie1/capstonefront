@@ -12,8 +12,28 @@ export default defineNuxtConfig({
     "nuxt-icon",
     "nuxt-headlessui",
     "@nuxt/eslint",
-    "@sidebase/nuxt-auth"
+    "@sidebase/nuxt-auth",
+    "nuxt-security"
   ],
+  
+  security: {
+    // global
+    corsHandler: {
+      origin: "api.artemsoft.com",
+    },
+    headers: {
+      contentSecurityPolicy: {
+        "img-src": ['self','partsshop-bucket.s3.eu-central-1.amazonaws.com/'],
+        "script-src": [
+          "'nonce-{{nonce}}'",
+          // The nonce allows the root script
+          "'strict-dynamic'" 
+          // All scripts inserted by the root script will also be allowed
+        ]
+      }
+    }
+  },
+
   auth: {
     provider: {
       type: 'local',

@@ -19,6 +19,7 @@
     "@sidebase/nuxt-auth": "^0.8.0",
     "keycloak-js": "^25.0.0",
     "nuxt": "^3.11.2",
+    "nuxt-security": "^2.0.0-rc.9",
     "vue": "^3.4.21",
     "vue-router": "^4.3.0"
   },

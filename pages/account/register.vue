@@ -6,6 +6,9 @@
                     Register for an account
                 </h2>
             </div>
+            <div v-if="errorMessage" class="text-red-500 mt-2">
+                {{ errorMessage }}
+            </div>
             <form @submit.prevent="registerUser" class="mt-8 space-y-6">
                 <div class="rounded-md shadow-sm -space-y-px">
                     <div>
@@ -79,6 +82,7 @@ const user = ref({
 
 const isLoading = ref(false);
 const passwordMismatch = ref(false);
+const errorMessage = ref('');
 
 const passwordRequirements = computed(() => {
     const minLength = 8;
@@ -101,6 +105,7 @@ watch([() => user.value.password, () => user.value.confirmPassword], ([newPasswo
 });
 
 async function registerUser() {
+    errorMessage.value = '';
     if (!Object.values(passwordRequirements.value).every(requirement => requirement)) {
         alert("Password does not meet the requirements.");
         return;
@@ -110,12 +115,12 @@ async function registerUser() {
         return;
     }
     try {
-        const response = await signUp({ email: user.value.email, password: user.value.password });
-        if (response.status === 201) {
-            navigate('/login');
-        }
+        await signUp({ email: user.value.email, password: user.value.password }, {}, {preventLoginFlow: true});
+        navigateTo('/account/login');
     } catch (error) {
         console.error("Registration failed:", error);
+        errorMessage.value = "Registration failed: " + (error.response?.data?.message || error.message || "Unknown error");
+
     }
 }
 </script>
