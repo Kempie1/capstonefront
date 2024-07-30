@@ -8,7 +8,7 @@ This is a nextJs frontend for the PartsShop Capstone project
 - Git
 - Yarn
 - Docker
-- 
+  
 ## Setup
 
 Make sure to install the dependencies:
