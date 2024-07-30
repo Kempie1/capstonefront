@@ -116,7 +116,7 @@ async function registerUser() {
     }
     try {
         await signUp({ email: user.value.email, password: user.value.password }, {}, {preventLoginFlow: true});
-        navigateTo('/account/login');
+        await navigateTo('/account/login');
     } catch (error) {
         console.error("Registration failed:", error);
         errorMessage.value = "Registration failed: " + (error.response?.data?.message || error.message || "Unknown error");

@@ -2,9 +2,10 @@
 definePageMeta({ middleware: 'auth' })
 const { status, token } = useAuth()
 const route = useRoute();
+const runtimeConfig = useRuntimeConfig()
 
 const { error, data } = await useFetch<Cart>(
-  "http://localhost:3000/cart", {
+  runtimeConfig.public.API_URL+"/cart", {
     headers: {
       "Content-Type": "application/json",
       "authorization": ""+token.value,
@@ -15,7 +16,7 @@ if (error.value) {
 async function removeFromCart(productId: string){
 if (status.value === "authenticated") {
   $fetch(
-  "http://localhost:3000/cart/remove", {
+  runtimeConfig.public.API_URL+"/cart/remove", {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
@@ -33,7 +34,7 @@ else navigateTo("/account/login")
 async function checkout(){
 if (status.value === "authenticated") {
   const checkoutUrl = await $fetch<URL>(
-  "http://localhost:3000/stripe/checkout", {
+  runtimeConfig.public.API_URL+"/stripe/checkout", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",

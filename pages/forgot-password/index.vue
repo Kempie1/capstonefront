@@ -1,4 +1,5 @@
 <script>
+const runtimeConfig = useRuntimeConfig()
 export default {
     data() {
         return {
@@ -9,7 +10,7 @@ export default {
     methods: {
         async submitForm() {
             try {
-                $fetch('http://localhost:3000/auth/request-password-reset', {
+                $fetch(runtimeConfig.public.API_URL+'/auth/request-password-reset', {
                     method: 'POST',
                     body: JSON.stringify({ email: this.email })
                 }).then((response) => {

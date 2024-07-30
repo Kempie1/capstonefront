@@ -23,13 +23,15 @@ export default defineNuxtConfig({
     },
     headers: {
       contentSecurityPolicy: {
-        "img-src": ['self','partsshop-bucket.s3.eu-central-1.amazonaws.com/'],
+        "img-src": ["'self'",'partsshop-bucket.s3.eu-central-1.amazonaws.com/'],
         "script-src": [
+          "'self'",
           "'nonce-{{nonce}}'",
           // The nonce allows the root script
           "'strict-dynamic'" 
           // All scripts inserted by the root script will also be allowed
-        ]
+        ],
+        "script-src-attr": ["'unsafe-hashes'", "'unsafe-inline'"],
       }
     }
   },
@@ -51,11 +53,11 @@ export default defineNuxtConfig({
     
     baseURL: process.env.BASE_LOCAL_AUTH_URL || 'http://localhost:3000/auth/',
   },
-
-
+  
   headlessui: {
     prefix: "Headless",
   },
+
   runtimeConfig: {
     // Keys within public, will be also exposed to the client-side
     public: {

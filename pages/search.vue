@@ -12,29 +12,41 @@ const totalPages = ref(1);
 const categoryCounts = ref<{ [key: string]: number }>({});
 const characteristicCounts = ref<{ [characteristicName: string]: { [value: string]: number } }>({});
 const expandedCategories = ref([]);
+const runtimeConfig = useRuntimeConfig()
+
 
 const onParamsChange = async () => {
-  const response = await useFetch<getProductResponse>(`http://localhost:3000/products/search?${params.toString()}`);
-  // const responseCount = await useFetch<getProductCountResponse>(`http://localhost:3000/products/searchCount?${params.toString()}`);
-  products.value = response.data?.value?.products || [];
-  error.value = response.error.value;
-  totalPages.value = response.data?.value?.totalPages || 1;
-  categoryCounts.value = response.data?.value?.categoryCounts || {};
-  characteristicCounts.value = response.data?.value?.characteristicCounts || {};
+  const response = await $fetch<getProductResponse>(runtimeConfig.public.API_URL+`/products/search?${params.toString()}`);
+  products.value = response.products || [];
+  // error.value = response.error.value;
+  totalPages.value = response.totalPages || 1;
+  categoryCounts.value = response.categoryCounts || {};
+  characteristicCounts.value = response.characteristicCounts || {};
 };
 
 onParamsChange();
 
 watch(() => route.query, (newQuery) => {
+  console.log("Query changed", newQuery);
   for (const key in newQuery) {
-    params.set(key, newQuery[key]);
+    if (newQuery[key]) {
+      params.set(key, String(newQuery[key]));
+    } else {
+      params.delete(key);
+    }
   }
+  for (const key of params.keys()) {
+    if (!(key in newQuery)) {
+      params.delete(key);
+    }
+  }
+  console.log(params)
   onParamsChange();
 }, { deep: true });
 
 async function goToPage(page: number) {
   currentPage.value = page;
-  navigateTo({
+  await navigateTo({
     path: '/search',
     query: {
       page: page,
@@ -72,16 +84,23 @@ async function applyFilter(filterType: string, filterValue: string) {
     }
   }
   const updatedParams = new URLSearchParams(params.toString());
+  updatedParams.set('page', '1');
   let encodedFilters
-  if (filters) {
+  if (Object.keys(filters).length !== 0) {
     encodedFilters = encodeURIComponent(JSON.stringify(filters));
     updatedParams.set('filters', encodedFilters);
   }
   if (category)
-    updatedParams.set('category', category);
-
+  {
+    if(updatedParams.get('category'))
+    {
+      updatedParams.delete('category')
+    }
+    else
+      updatedParams.set('category', category);
+  }
   // Navigate to the updated URL
-  await navigateTo({ path: route.path, query: Object.fromEntries(updatedParams) })
+  await navigateTo({ path: '/search', query: Object.fromEntries(updatedParams) })
 }
 
 function toggleCategory(category) {
@@ -95,13 +114,13 @@ function toggleCategory(category) {
   }
 }
 
-function clearFilters() {
+async function clearFilters() {
   // Reset filters and category
   if (params.get("filters")) {
     try {
       const updatedParams = new URLSearchParams(params.toString());
       updatedParams.delete("filters")
-      navigateTo({ path: route.path, query: Object.fromEntries(updatedParams) });
+      await navigateTo({ path: route.path, query: Object.fromEntries(updatedParams) });
     } catch (error) {
       console.error('Failed to parse filters from params', error);
     }
@@ -112,9 +131,9 @@ function clearFilters() {
 
 <template>
   <section class="mt-10">
-    <div class="flex">
+    <div class="flex flex-col md:flex-row">
       <!-- Sidebar for filters -->
-      <div class="sidebar w-1/4 p-4 max-h-screen overflow-y-auto">
+      <div class="sidebar w-1/6 p-4 max-h-screen overflow-y-auto md:block">
         <h2 class="text-lg font-bold">Filters</h2>
         <button @click="clearFilters" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
           Clear Filters
@@ -132,7 +151,8 @@ function clearFilters() {
             </div>
           </div>
 
-          <div v-for="(values, characteristic) in characteristicCounts" :key="characteristic">
+          <!-- Filters WIP -->
+          <!-- <div v-for="(values, characteristic) in characteristicCounts" :key="characteristic">
             <h2 class="cursor-pointer text-blue-500 hover:text-blue-700 mt-4" @click="toggleCategory(characteristic)">{{
               characteristic }}</h2>
             <div v-if="expandedCategories.includes(characteristic)">
@@ -144,21 +164,13 @@ function clearFilters() {
                 </label>
               </div>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
 
-
-
-
-
-
-
-
       <!-- Main content -->
-      <div v-if="products" class="grid grid-cols-4 gap-4">
+      <div v-if="products" class="flex-1 grid grid-cols-4 gap-4">
         <div v-for="item in products">
-          <!-- <a :href="'http://localhost:3000/products/product/'+ item.id"> -->
           <NuxtLink :to="'/product/' + item.id">
             <nuxt-img :src="item.imgUrl" alt="Product Image" />
             <p>{{ item.name }}</p>

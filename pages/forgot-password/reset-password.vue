@@ -1,6 +1,7 @@
 <script setup lang="ts">
 // Get the parameters
 const route = useRoute();
+const runtimeConfig = useRuntimeConfig()
 const showSuccessMessage = ref(false)
 const passwordReset = ref({
   password: '',
@@ -22,7 +23,7 @@ if (!route.query.token || !route.query.id) {
 
 //Verify that the token is valid
 const { error, data } = await useFetch<{ validToken: boolean }>(
-  "http://localhost:3000/auth/verify-password-reset", {
+  runtimeConfig.public.API_URL+"/auth/verify-password-reset", {
   method: 'POST',
   headers: {
     "Content-Type": "application/json",
@@ -73,7 +74,7 @@ async function changePassword() {
     return;
   }
   try {
-    $fetch('http://localhost:3000/auth/complete-password-reset', {
+    $fetch(runtimeConfig.public.API_URL+'/auth/complete-password-reset', {
       method: 'POST',
       body: JSON.stringify({ 
         token: token,
