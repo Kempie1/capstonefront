@@ -18,9 +18,6 @@ export default defineNuxtConfig({
   
   security: {
     // global
-    corsHandler: {
-      origin: "api.artemsoft.com",
-    },
     headers: {
       contentSecurityPolicy: {
         "img-src": ["'self'",'partsshop-bucket.s3.eu-central-1.amazonaws.com/'],
