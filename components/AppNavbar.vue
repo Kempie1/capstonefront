@@ -41,8 +41,8 @@ export default {
               <div v-for="value in CategoriesList">
                 <NuxtLink
                   :to="{
-                    name: 'categories-category',
-                    params: { category: value },
+                    name: 'search',
+                    query: { category: value },
                   }"
                   class="text-black text-lg hover:text-gray-700 block px-4 py-2"
                   :class="{ 'bg-blue-500': active }"

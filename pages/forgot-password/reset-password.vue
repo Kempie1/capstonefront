@@ -1,7 +1,8 @@
 <script setup lang="ts">
 // Get the parameters
 const route = useRoute();
-let showSuccessMessage = ref(false)
+const runtimeConfig = useRuntimeConfig()
+const showSuccessMessage = ref(false)
 const passwordReset = ref({
   password: '',
   confirmPassword: '',
@@ -22,7 +23,7 @@ if (!route.query.token || !route.query.id) {
 
 //Verify that the token is valid
 const { error, data } = await useFetch<{ validToken: boolean }>(
-  "http://localhost:3000/auth/verify-password-reset", {
+  runtimeConfig.public.API_URL+"/auth/verify-password-reset", {
   method: 'POST',
   headers: {
     "Content-Type": "application/json",
@@ -33,7 +34,7 @@ const { error, data } = await useFetch<{ validToken: boolean }>(
   }),
 })
 if (error.value) {
-  console.log("Error!!", error.value);
+  console.error("Error!!", error.value);
 }
 if (data?.value?.validToken === false) {
   console.error("Invalid token");
@@ -73,7 +74,7 @@ async function changePassword() {
     return;
   }
   try {
-    $fetch('http://localhost:3000/auth/complete-password-reset', {
+    $fetch(runtimeConfig.public.API_URL+'/auth/complete-password-reset', {
       method: 'POST',
       body: JSON.stringify({ 
         token: token,
@@ -85,9 +86,6 @@ async function changePassword() {
         showSuccessMessage.value = true;
       }
     })
-    // if (response.status === 201) {
-    //     navigate('/login');
-    // }
   } catch (error) {
     console.error("Registration failed:", error);
   }
