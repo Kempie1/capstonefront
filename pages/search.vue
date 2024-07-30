@@ -44,13 +44,8 @@ watch(() => route.query, (newQuery) => {
 
 async function goToPage(page: number) {
   currentPage.value = page;
-  await navigateTo({
-    path: '/search',
-    query: {
-      page: page,
-      keyword: route.query["keyword"]
-    }
-  })
+  params.set('page', String(page));
+  onParamsChange();
 }
 
 async function applyFilter(filterType: string, filterValue: string) {
@@ -124,7 +119,6 @@ async function clearFilters() {
     }
   }
 }
-
 </script>
 
 <template>
@@ -142,7 +136,7 @@ async function clearFilters() {
           <div v-if="expandedCategories.includes('Categories')">
             <div v-for="(count, category) in categoryCounts" :key="category" class="py-1">
               <label class="flex items-center space-x-2">
-                <input type="checkbox" class="form-checkbox" :value="category"
+                <input type="checkbox" class="form-checkbox" :value="category" :checked="params.get('category') === category"
                   @change="applyFilter('category', category)">
                 <span>{{ category }} ({{ count }})</span>
               </label>

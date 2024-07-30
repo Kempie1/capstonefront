@@ -1,7 +1,6 @@
 <script setup lang="ts">
 definePageMeta({ middleware: 'auth' })
 const { status, token } = useAuth()
-const route = useRoute();
 const runtimeConfig = useRuntimeConfig()
 
 const { error, data } = await useFetch<Cart>(
