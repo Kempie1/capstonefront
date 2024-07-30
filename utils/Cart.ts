@@ -9,3 +9,9 @@ export interface Cart {
     id: string;
     cartItems: CartItem[];
   }
+
+export interface CartCompatability{
+    cart:Cart
+    compatibilityIssues: string[]
+    compatibilityStatus: boolean
+}
