@@ -34,7 +34,7 @@ const { error, data } = await useFetch<{ validToken: boolean }>(
   }),
 })
 if (error.value) {
-  console.log("Error!!", error.value);
+  console.error("Error!!", error.value);
 }
 if (data?.value?.validToken === false) {
   console.error("Invalid token");

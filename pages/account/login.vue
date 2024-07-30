@@ -92,7 +92,7 @@
   if (error.response && error.response.status === 401) {
     errorMessage.value = 'Wrong credentials.';
   } else {
-    console.log(error);
+    console.error(error);
     errorMessage.value = error.message || 'An error occurred during sign in.';
   }
 }

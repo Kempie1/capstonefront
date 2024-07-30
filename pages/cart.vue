@@ -11,7 +11,7 @@ const { error, data } = await useFetch<Cart>(
       "authorization": ""+token.value,
     }})
 if (error.value) {
-  console.log("Error!!", error.value);
+  console.error("Error!!", error.value);
 }
 async function removeFromCart(productId: string){
 if (status.value === "authenticated") {

@@ -6,7 +6,7 @@ const { error, data } = await useFetch<FlattenProduct>(
   runtimeConfig.public.API_URL+"/products/product/" + route.params.id,
 );
 if (error.value) {
-  console.log("Error!!", error);
+  console.error("Error!!", error);
 }
 
 

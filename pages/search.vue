@@ -27,7 +27,6 @@ const onParamsChange = async () => {
 onParamsChange();
 
 watch(() => route.query, (newQuery) => {
-  console.log("Query changed", newQuery);
   for (const key in newQuery) {
     if (newQuery[key]) {
       params.set(key, String(newQuery[key]));
@@ -40,7 +39,6 @@ watch(() => route.query, (newQuery) => {
       params.delete(key);
     }
   }
-  console.log(params)
   onParamsChange();
 }, { deep: true });
 
