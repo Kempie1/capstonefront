@@ -60,8 +60,8 @@ async function checkout() {
   <div class="max-w-4xl mx-auto py-8 px-4">
     <h1 class="text-2xl font-bold mb-6">Cart</h1>
     <div v-if="messages.length" :class="{
-      'bg-yellow-100 border-yellow-400 text-yellow-700': data?.compatibilityStatus,
-      'bg-green-100 border-green-400 text-green-700': !data?.compatibilityStatus,
+      'bg-yellow-100 border-yellow-400 text-yellow-700': !data?.compatibilityStatus,
+      'bg-green-100 border-green-400 text-green-700': data?.compatibilityStatus,
       'mb-4 p-4 rounded border': true
     }">
       <ul>
